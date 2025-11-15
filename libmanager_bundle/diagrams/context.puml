@@ -1,0 +1,10 @@
+
+@startuml
+actor User
+rectangle LibManager {
+  User -- (Web Client)
+  (Web Client) --> (REST API)
+  (REST API) --> (Database)
+  (REST API) --> (Notification Service)
+}
+@enduml

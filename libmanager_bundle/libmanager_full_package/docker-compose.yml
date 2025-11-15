@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  app:
+    image: openjdk:17-jdk-slim
+    container_name: libmanager-app
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: bash -c "mvn -q -DskipTests package && java -jar target/libmanager-0.0.1-SNAPSHOT.jar"
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/libmanager
+      - SPRING_DATASOURCE_USERNAME=libmanager
+      - SPRING_DATASOURCE_PASSWORD=libpass
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: libmanager
+      POSTGRES_USER: libmanager
+      POSTGRES_PASSWORD: libpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

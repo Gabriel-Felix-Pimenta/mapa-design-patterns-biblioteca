@@ -1,0 +1,11 @@
+
+@startuml
+package "LibManager (Spring Boot)" {
+  [Controllers]
+  [Services]
+  [Repositories]
+}
+[Controllers] --> [Services]
+[Services] --> [Repositories]
+[Repositories] --> (Database)
+@enduml

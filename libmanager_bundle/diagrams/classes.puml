@@ -1,0 +1,16 @@
+
+@startuml
+class Item
+class Book
+class Magazine
+class Thesis
+Item <|-- Book
+Item <|-- Magazine
+Item <|-- Thesis
+class ItemFactory
+class LoanStrategy
+class RegularLoanStrategy
+LoanStrategy <|-- RegularLoanStrategy
+class BorrowFacade
+BorrowFacade --> Services
+@enduml
